@@ -1,0 +1,31 @@
+{
+  "name": "find-devs",
+  "version": "0.0.1",
+  "description": "A script written in Node.js to find developers on GitHub",
+  "main": "find-devs.js",
+  "directories": {
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clinch/find-devs.git"
+  },
+  "keywords": [
+    "github",
+    "search",
+    "developers",
+    "opensource"
+  ],
+  "dependencies": {
+    "github": ">= 1.1.8",
+    "prompt": ">= 0.2.13"
+  },
+  "devDependencies": {
+  },
+  "author": "Chris Inch <github@chrisinch.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clinch/find-devs/issues"
+  }
+}
