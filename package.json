@@ -1,6 +1,6 @@
 {
   "name": "find-devs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A script written in Node.js to find developers on GitHub",
   "main": "find-devs.js",
   "directories": {
@@ -18,7 +18,7 @@
     "opensource"
   ],
   "dependencies": {
-    "github": ">= 1.1.8",
+    "github": ">= 0.2.2",
     "prompt": ">= 0.2.13"
   },
   "devDependencies": {
