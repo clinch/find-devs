@@ -17,3 +17,7 @@ Usage
 
     $ node find-devs.js 
 
+Todo
+----
+
+- Add support for Oauth or Basic Authentication to avoid extremely low rate limits.
