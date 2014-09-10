@@ -31,7 +31,10 @@ var prompts = {
 	}
 };
 prompt.get(prompts, function(err, result) {
-                if (err != null) { console.log(err); return; }
+                if (err != null) { 
+			console.error(err); 
+			return; 
+		}
 
 		searchGitHub(result);
         }
@@ -59,14 +62,14 @@ function searchGitHub(queryParams) {
 
 	github.search.users({q: query}, function(err, results) {
 		if (err != null) {
-			console.log("ERROR: " + err);
-		} else {
-			if (results.incomplete_results == true) {
-				console.log("****\n**** WARNING: This is not a complete list!\n****\n");
-			}
-			for (var user in results.items) {
-				userDetails(results.items[user].login);
-			}
+			console.error("ERROR: " + err);
+			return;
+		} 
+		if (results.incomplete_results == true) {
+			console.log("****\n**** WARNING: This is not a complete list!\n****\n");
+		}
+		for (var user in results.items) {
+			userDetails(results.items[user].login);
 		}
 	});
 }
@@ -80,10 +83,18 @@ function userDetails(login) {
 
 	github.user.getFrom({user: login}, function(err, result) {
 		if (err != null) {
-			console.log(err);
+			console.error(err);
 			return;
 		}
 
-		console.log("\n" + result.login + "\n(" + result.company + ")" );
+		console.log("");	// Blank line separator
+
+		if (result.hireable) {
+			console.log("\t*** FOR HIRE:");
+		}
+		console.log("%s - %s", result.login, result.name );
+		console.log("\tFollowers: %d", result.followers);
+		console.log("\tPublic repos: %d", result.public_repos);
+		console.log("\tLocation: %s", result.location);
 	});
 }
