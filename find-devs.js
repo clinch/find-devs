@@ -14,6 +14,8 @@ github.authenticate({
 	token: config.GITHUB_TOKEN
 });
 
+var showHireableOnly = false;
+
 // Configure and start the command line prompt
 prompt.message = '';
 prompt.delimiter = '';
@@ -34,6 +36,11 @@ var prompts = {
 		language: {
 			description: 'Required language knowledge (Optional):',
 			message: 'Developer must know this language'
+		},
+		hireable: {
+			pattern:/^[yYnN]$/,
+			description: 'Only show candidates for hire (Y|N):',
+			message: 'Enter Y or N'
 		}
 	}
 };
@@ -42,6 +49,12 @@ prompt.get(prompts, function(err, result) {
 			console.error(err); 
 			return; 
 		}
+
+		if (result.hireable != null && result.hireable.toUpperCase() == 'Y') {
+			// This is used later when displaying results (since we can't set this
+			// as a search filter.
+			showHireableOnly = true;
+		} 
 
 		searchGitHub(result);
         }
@@ -93,13 +106,21 @@ function userDetails(login) {
 			console.error(err);
 			return;
 		}
+		if (showHireableOnly && !result.hireable) {
+			// We don't want to show anything for this user then.
+			return;
+		}
 
 		console.log("");	// Blank line separator
 
 		if (result.hireable) {
-			console.log("\t*** FOR HIRE:");
+			console.log("*** FOR HIRE:");
 		}
+
 		console.log("%s - %s", result.login, result.name );
+		if (result.email) {
+			console.log("\t%s", result.email);
+		}
 		console.log("\tFollowers: %d", result.followers);
 		console.log("\tPublic repos: %d", result.public_repos);
 		console.log("\tLocation: %s", result.location);
