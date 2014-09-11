@@ -1,6 +1,6 @@
 {
   "name": "find-devs",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A script written in Node.js to find developers on GitHub",
   "main": "find-devs.js",
   "directories": {
