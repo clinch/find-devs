@@ -10,7 +10,7 @@ searching. This Node.js script was the result.
 Config
 ------
 
-No config necessary (though will be soon when authentication is added for searching)
+Copy the config.sample.js file to config.js and then add your own OAuth token.
 
 Usage
 -----
@@ -20,4 +20,4 @@ Usage
 Todo
 ----
 
-- Add support for Oauth or Basic Authentication to avoid extremely low rate limits.
+- ~~add support for Oauth or Basic Authentication to avoid extremely low rate limits.~~
