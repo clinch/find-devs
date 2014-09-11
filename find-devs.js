@@ -1,10 +1,17 @@
 var GitHubAPI = require('github');
 var prompt = require('prompt');
 
+// config constants available via config.CONST_NAME
+var config = require('./config.js');
+
 var github = new GitHubAPI({
 	version: "3.0.0",
 	//debug: true,
 	protocol: "https"
+});
+github.authenticate({
+	type: "oauth",
+	token: config.GITHUB_TOKEN
 });
 
 // Configure and start the command line prompt
