@@ -89,19 +89,19 @@ function searchGitHub(queryParams) {
 			console.log("****\n**** WARNING: This is not a complete list!\n****\n");
 		}
 		for (var user in results.items) {
-			userDetails(results.items[user].login);
+			userDetails(results.items[user].id);
 		}
 	});
 }
 
 /**
- * Query GitHub for the complete user details based on login
+ * Query GitHub for the complete user details based on id
  * 
- * @param login:	The string login representing the GitHub user.
+ * @param id:	The string id representing the GitHub user.
  */
-function userDetails(login) {
+function userDetails(id) {
 
-	github.user.getFrom({user: login}, function(err, result) {
+	github.users.getById({id: id}, function(err, result) {
 		if (err != null) {
 			console.error(err);
 			return;
